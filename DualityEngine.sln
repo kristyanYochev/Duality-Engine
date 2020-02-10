@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DualityEngine", "DualityEngine\DualityEngine.csproj", "{3B31722F-E202-4F66-A29D-0A93199A8EAF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShowCase", "ShowCase\ShowCase.csproj", "{877BCB8B-F51C-4E6F-9A88-B27003925CC9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,5 +15,9 @@ Global
 		{3B31722F-E202-4F66-A29D-0A93199A8EAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B31722F-E202-4F66-A29D-0A93199A8EAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B31722F-E202-4F66-A29D-0A93199A8EAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{877BCB8B-F51C-4E6F-9A88-B27003925CC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{877BCB8B-F51C-4E6F-9A88-B27003925CC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{877BCB8B-F51C-4E6F-9A88-B27003925CC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{877BCB8B-F51C-4E6F-9A88-B27003925CC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
