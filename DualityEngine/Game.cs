@@ -6,7 +6,25 @@ namespace DualityEngine
     {
         public void Start()
         {
-            Console.WriteLine("Hello World");
+            bool exits = false;
+
+            Input input = new Input();
+            input.StartInputThread();
+
+            while (!exits)
+            {
+                if (input.IsKeyPressed(ConsoleKey.Q))
+                {
+                    exits = true;
+                }
+                if (input.IsKeyPressed(ConsoleKey.A))
+                {
+                    Console.WriteLine("You pressed A");
+                }
+                Console.WriteLine("Doing shit");
+            }
+
+            input.StopInputThread();
         }
     }
 }
