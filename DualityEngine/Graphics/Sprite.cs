@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DualityEngine
+namespace DualityEngine.Graphics
 {
     public class Sprite
     {

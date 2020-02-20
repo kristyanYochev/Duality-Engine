@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DualityEngine
+namespace DualityEngine.Graphics
 {
     public class Rendering
     {
@@ -27,7 +27,7 @@ namespace DualityEngine
                 Console.SetCursorPosition(x, y);
                 Console.Write(s);
             }
-            catch (ArgumentOutOfRangeException e){}
+            catch (ArgumentOutOfRangeException){}
         }
     }
 }
