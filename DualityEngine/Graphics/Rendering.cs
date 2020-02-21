@@ -8,6 +8,7 @@ namespace DualityEngine.Graphics
     {
         public static void RenderSprite(Sprite sprite, double x, double y) 
         {
+            Console.CursorVisible = false;
             int posX = (int)Math.Round(x * Console.WindowWidth);
             int posY = (int)Math.Round(y * Console.WindowHeight);
             
@@ -18,16 +19,22 @@ namespace DualityEngine.Graphics
                     DrawCharAt(sprite.GetCharAt(row, column), posX + column, posY + row);
                 }
             }
+
+            Console.Out.Flush();
         }
 
-        private static void DrawCharAt(char s, int x, int y)
+        public static void ClearScreen()
         {
-            try
+            Console.Clear();
+        }
+
+        private static void DrawCharAt(char c, int x, int y)
+        {
+            if ((0 <= x && x < Console.WindowWidth) && (0 <= y && y < Console.WindowHeight))
             {
                 Console.SetCursorPosition(x, y);
-                Console.Write(s);
+                Console.Write(c);
             }
-            catch (ArgumentOutOfRangeException){}
         }
     }
 }
