@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Threading;
+using System.Threading.Tasks;
 using System.IO;
 
 namespace DualityEngine
@@ -7,7 +7,6 @@ namespace DualityEngine
     public class Input
     {
         private bool InputThreadRunning { get; set; }
-        private Thread inputThread;
         private ConsoleKeyInfo keyPressed;
         private bool isKeyDown = false;
 
@@ -29,15 +28,13 @@ namespace DualityEngine
             if (!InputThreadRunning)
             {
                 InputThreadRunning = true;
-                inputThread = new Thread(() =>
+                Task.Factory.StartNew(() =>
                 {
                     while (InputThreadRunning)
                     {
                         CollectInput();
                     }
                 });
-
-                inputThread.Start();
             }
         }
 
