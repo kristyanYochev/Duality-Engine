@@ -10,7 +10,7 @@ namespace ShowCase
     {
         static void Main(string[] args)
         {
-            Sprite testSprite = Sprite.ParseSprite("/Users/kristyanyochev/Projects/DualityEngine/ShowCase/TestSprite.txt");
+            Sprite testSprite = Sprite.ParseSprite("Sprites/TestSprite.txt");
             Input.Setup();
 
             double posX = 0.5;
