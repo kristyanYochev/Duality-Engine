@@ -4,63 +4,32 @@ using System.IO;
 
 namespace DualityEngine
 {
-    public class Input
+    public static class Input
     {
-        private bool InputThreadRunning { get; set; }
-        private ConsoleKeyInfo keyPressed;
-        private bool isKeyDown = false;
+        private static ConsoleKeyInfo KeyPressed { get; set; }
+        private static bool IsKeyDown { get; set; } = false;
 
-        public Input()
+        public static void Setup()
         {
             Console.SetIn(new StreamReader(Stream.Null));
             Console.TreatControlCAsInput = true;
-
-            InputThreadRunning = false;
         }
 
-        ~Input()
+        public static bool IsKeyPressed(ConsoleKey key)
         {
-            StopInputThread();
+            return KeyPressed.Key == key && IsKeyDown;
         }
 
-        public void StartInputThread()
-        {
-            if (!InputThreadRunning)
-            {
-                InputThreadRunning = true;
-                Task.Factory.StartNew(() =>
-                {
-                    while (InputThreadRunning)
-                    {
-                        CollectInput();
-                    }
-                });
-            }
-        }
-
-        public void StopInputThread()
-        {
-            if (InputThreadRunning)
-            {
-                InputThreadRunning = false;
-            }
-        }
-
-        public bool IsKeyPressed(ConsoleKey key)
-        {
-            return keyPressed.Key == key && isKeyDown;
-        }
-
-        private void CollectInput()
+        public static void CollectInput()
         {
             if (Console.KeyAvailable)
             {
-                keyPressed = Console.ReadKey(true);
-                isKeyDown = true;
+                KeyPressed = Console.ReadKey(true);
+                IsKeyDown = true;
             }
             else
             {
-                isKeyDown = false;
+                IsKeyDown = false;
             }
         }
     }

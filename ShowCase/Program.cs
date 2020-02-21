@@ -11,39 +11,38 @@ namespace ShowCase
         static void Main(string[] args)
         {
             Sprite testSprite = Sprite.ParseSprite("/Users/kristyanyochev/Projects/DualityEngine/ShowCase/TestSprite.txt");
-            Input input = new Input();
-            //input.StartInputThread();
+            Input.Setup();
 
             double posX = 0.5;
             double posY = 0.5;
-            const double step = 0.01;
+            const double step = 0.02;
 
             bool exits = false;
 
             while (!exits)
             {
-                input.CollectInput();
-                if (input.IsKeyPressed(ConsoleKey.Q))
+                Input.CollectInput();
+                if (Input.IsKeyPressed(ConsoleKey.Q))
                 {
                     exits = true;
                 }
 
-                if (input.IsKeyPressed(ConsoleKey.W))
+                if (Input.IsKeyPressed(ConsoleKey.W))
                 {
                     posY -= step;
                 }
 
-                if (input.IsKeyPressed(ConsoleKey.A))
+                if (Input.IsKeyPressed(ConsoleKey.A))
                 {
                     posX -= step;
                 }
 
-                if (input.IsKeyPressed(ConsoleKey.S))
+                if (Input.IsKeyPressed(ConsoleKey.S))
                 {
                     posY += step;
                 }
 
-                if (input.IsKeyPressed(ConsoleKey.D))
+                if (Input.IsKeyPressed(ConsoleKey.D))
                 {
                     posX += step;
                 }
@@ -52,8 +51,6 @@ namespace ShowCase
                 Rendering.RenderSprite(testSprite, posX, posY);
                 Thread.Sleep(1000 / 60);
             }
-
-            input.StopInputThread();
         }
     }
 }
