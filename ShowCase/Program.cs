@@ -21,6 +21,7 @@ namespace ShowCase
 
             while (!exits)
             {
+                RateLimiter.LimitRate(60);
                 Input.CollectInput();
                 if (Input.IsKeyPressed(ConsoleKey.Q))
                 {
@@ -49,7 +50,6 @@ namespace ShowCase
 
                 Rendering.ClearScreen();
                 Rendering.RenderSprite(testSprite, posX, posY);
-                Thread.Sleep(1000 / 60);
             }
         }
     }
