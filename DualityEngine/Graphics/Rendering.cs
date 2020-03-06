@@ -39,7 +39,7 @@ namespace DualityEngine.Graphics
             stdout.Close();
         }
 
-        public static void RenderSprite(Sprite sprite, double x, double y) 
+        public static void RenderSprite(Sprite sprite, float x, float y) 
         {
             int posX = (int)Math.Round(x * ScreenWidth);
             int posY = (int)Math.Round(y * ScreenHeight);
@@ -51,7 +51,7 @@ namespace DualityEngine.Graphics
                     DrawCharAt(sprite.GetCharAt(row, column), posX + column, posY + row);
                 }
             }
-            Console.Out.Flush();
+            //Console.Out.Flush();
         }
 
         public static void ClearScreen()
@@ -64,8 +64,16 @@ namespace DualityEngine.Graphics
 
         public static void Flip()
         {
+            switch(Environment.OSVersion.Platform)
+            {
+                case PlatformID.MacOSX:
+                case PlatformID.Unix:
+                    Console.Clear();
+                    break;
+            }
             string ScreenString = string.Join("\n", VirtualScreen);
             stdout.Write(Encoding.ASCII.GetBytes(ScreenString), 0, ScreenString.Length);
+            stdout.Flush();
         }
 
         private static void DrawCharAt(char c, int x, int y)
