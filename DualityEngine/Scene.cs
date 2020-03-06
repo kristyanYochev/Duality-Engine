@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using DualityEngine.Graphics;
+
 namespace DualityEngine
 {
     public class Scene
     {
         private readonly List<GameObject> gameObjects;
+        public bool running = false;
 
         public Scene()
         {
@@ -18,15 +21,26 @@ namespace DualityEngine
 
         public void Run()
         {
+            running = true;
+            Input.Setup();
+            Rendering.Setup();
             foreach(GameObject gameObject in gameObjects)
             {
                 gameObject.Start();
             }
 
-            foreach (GameObject gameObject in gameObjects)
+            while (running)
             {
-                gameObject.Update();
+                RateLimiter.LimitRate(60);
+                Rendering.ClearScreen();
+                Input.CollectInput();
+                foreach (GameObject gameObject in gameObjects)
+                {
+                    gameObject.Update();
+                }
+                Rendering.Flip();
             }
+            Rendering.Teardown();
         }
     }
 }

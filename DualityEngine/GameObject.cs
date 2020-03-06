@@ -1,20 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using DualityEngine.Mathf;
 
 namespace DualityEngine
 {
-    public class GameObject : IComponent
+    public class GameObject
     {
-        private readonly List<IComponent> components;
+        private readonly List<Component> components;
+        public Vector2 position;
+        public Scene scene;
 
-        public GameObject()
+        public GameObject(Vector2 position, Scene scene)
         {
-            components = new List<IComponent>();
+            components = new List<Component>();
+            this.position = position;
+            this.scene = scene;
         }
 
         public void Start()
         {
-            foreach (IComponent component in components)
+            foreach (Component component in components)
             {
                 component.Start();
             }
@@ -22,18 +27,18 @@ namespace DualityEngine
 
         public void Update()
         {
-            foreach (IComponent component in components)
+            foreach (Component component in components)
             {
                 component.Update();
             }
         }
 
-        public void AddComponent(IComponent component)
+        public void AddComponent(Component component)
         {
             components.Add(component);
         }
 
-        public IComponent GetComponent<T>()
+        public Component GetComponent<T>()
         {
             return components.Find(c => c is T);
         }

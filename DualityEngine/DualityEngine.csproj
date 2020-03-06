@@ -6,4 +6,8 @@
     <OutputType>Library</OutputType>
     <StartupObject />
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Mathf\" />
+    <Folder Include="Components\" />
+  </ItemGroup>
 </Project>
