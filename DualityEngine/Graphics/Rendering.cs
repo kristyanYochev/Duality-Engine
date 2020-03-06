@@ -14,8 +14,19 @@ namespace DualityEngine.Graphics
 
         public static void Setup()
         {
-            Console.WindowWidth = Console.LargestWindowWidth;
-            Console.WindowHeight = Console.LargestWindowHeight;
+            // Make Console fullscreen only on windows (*nix doesn't support that)
+            switch(Environment.OSVersion.Platform)
+            {
+                case PlatformID.Win32NT:
+                case PlatformID.Win32S:
+                case PlatformID.Win32Windows:
+                case PlatformID.WinCE:
+                    Console.WindowWidth = Console.LargestWindowWidth;
+                    Console.WindowHeight = Console.LargestWindowHeight;
+                    break;
+                default:
+                    break;
+            }
             ScreenWidth = Console.WindowWidth;
             ScreenHeight = Console.WindowHeight;
             stdout = Console.OpenStandardOutput(ScreenWidth * ScreenHeight);
