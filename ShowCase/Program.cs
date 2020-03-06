@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Diagnostics;
 using DualityEngine;
 using DualityEngine.Graphics;
 
@@ -12,6 +13,7 @@ namespace ShowCase
         {
             Sprite testSprite = Sprite.ParseSprite("Sprites/TestSprite.txt");
             Input.Setup();
+            Rendering.Setup();
 
             double posX = 0.5;
             double posY = 0.5;
@@ -50,7 +52,9 @@ namespace ShowCase
 
                 Rendering.ClearScreen();
                 Rendering.RenderSprite(testSprite, posX, posY);
+                Rendering.Flip();
             }
+            Rendering.Teardown();
         }
     }
 }
