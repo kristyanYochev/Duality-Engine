@@ -4,7 +4,7 @@ mono:
     - latest
 install:
     - nuget restore DualityEngine.sln
-    - sudo apt-get install -y nunit-console
+    - nuget install NUnit.Console -Version 3.9.0 -OutputDirectory testrunner
 script:
     - msbuild /p:Configuration=Release DualityEngine.sln
-    - nunit-console ./DualityTests/bin/Release/netcoreapp3.0/DualityTests.dll
+    - mono ./testrunner/NUnit.ConsoleRunner.3.9.0/tools/nunit3-console.exe ./DualityTests/bin/Release/netcoreapp3.0/DualityTests.dll
