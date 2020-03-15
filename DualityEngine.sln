@@ -5,6 +5,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DualityEngine", "DualityEng
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShowCase", "ShowCase\ShowCase.csproj", "{877BCB8B-F51C-4E6F-9A88-B27003925CC9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E230779B-4771-4BB0-ADF5-FCA690214F00}"
+	ProjectSection(SolutionItems) = preProject
+		.travis.yml = .travis.yml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DualityTests", "DualityTests\DualityTests.csproj", "{DF5652C9-744D-40B0-B51E-C82E5FB1FFE0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,5 +26,9 @@ Global
 		{877BCB8B-F51C-4E6F-9A88-B27003925CC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{877BCB8B-F51C-4E6F-9A88-B27003925CC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{877BCB8B-F51C-4E6F-9A88-B27003925CC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF5652C9-744D-40B0-B51E-C82E5FB1FFE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF5652C9-744D-40B0-B51E-C82E5FB1FFE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF5652C9-744D-40B0-B51E-C82E5FB1FFE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF5652C9-744D-40B0-B51E-C82E5FB1FFE0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
