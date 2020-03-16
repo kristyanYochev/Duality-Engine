@@ -1,10 +1,11 @@
 ﻿language: csharp
+dist: trusty
 solution: DualityEngine.sln
-mono:
-    - latest
+mono: none
+dotnet: latest
+
 install:
-    - nuget restore DualityEngine.sln
-    - nuget install xunit.runners -Version 2.0.0 -OutputDirectory ./testrunner
+    - dotnet restore
 script:
-    - msbuild /p:Configuration=Release DualityEngine.sln
-    - mono ./testrunner/xunit.runners.2.0.0/tools/xunit.console.clr4.exe ./DualityEngine.Tests/bin/Release/dotnetcore3.0/DualityEngine.Tests.dll
+    - dotnet build
+    - dotnet test DualityEngine.Tests/DualityEngine.Tests.csproj
