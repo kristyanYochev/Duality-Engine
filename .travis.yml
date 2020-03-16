@@ -2,7 +2,7 @@
 dist: trusty
 solution: DualityEngine.sln
 mono: none
-dotnet: latest
+dotnet: 3.0
 
 install:
     - dotnet restore
