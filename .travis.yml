@@ -1,14 +1,9 @@
 ﻿language: csharp
-dist: trusty
-solution: DualityEngine.sln
 mono: none
-dotnet: none
-before_install:
-    - sudo dpkg --purge packages-microsoft-prod && sudo dpkg -i packages-microsoft-prod.deb
-    - sudo apt-get update
+dotnet: 3.0.102
 install:
-    - sudo apt-get install dotnet-sdk-3.0
     - dotnet restore
+
 script:
     - dotnet build
     - dotnet test DualityEngine.Tests/DualityEngine.Tests.csproj
