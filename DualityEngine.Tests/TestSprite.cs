@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using NUnit.Framework;
 using DualityEngine.Graphics;
+using Moq;
+
 namespace DualityEngineTests
 {
     [TestFixture]
