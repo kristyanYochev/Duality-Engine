@@ -28,6 +28,11 @@ namespace DualityEngine.Implementations
             return System.Console.OpenStandardOutput();
         }
 
+        public Stream OpenStandardOutput(int bufferSize)
+        {
+            return System.Console.OpenStandardOutput(bufferSize);
+        }
+
         public ConsoleKeyInfo ReadKey()
         {
             return System.Console.ReadKey();
