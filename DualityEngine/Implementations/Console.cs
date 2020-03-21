@@ -14,6 +14,10 @@ namespace DualityEngine.Implementations
         public int WindowWidth { get => System.Console.WindowWidth; set => System.Console.WindowWidth = value; }
         public int WindowHeight { get => System.Console.WindowHeight; set => System.Console.WindowHeight = value; }
 
+        public int LargestWindowWidth => System.Console.LargestWindowWidth;
+
+        public int LargestWindowHeight => System.Console.LargestWindowHeight;
+
         public void Clear()
         {
             System.Console.Clear();
