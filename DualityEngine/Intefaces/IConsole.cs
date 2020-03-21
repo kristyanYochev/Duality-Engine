@@ -5,7 +5,7 @@ using System.IO;
 
 namespace DualityEngine.Interfaces
 {
-    interface IConsole
+    public interface IConsole
     {
         bool CursorVisible { get; set; }
         bool KeyAvailable { get; }
