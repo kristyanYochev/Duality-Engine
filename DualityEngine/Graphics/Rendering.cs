@@ -2,18 +2,22 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Text;
+using DualityEngine.Interfaces;
+using DualityEngine.Implementations;
 
 namespace DualityEngine.Graphics
 {
     public class Rendering
     {
         private static string[] VirtualScreen { get; set; }
+        private static IConsole console;
         private static Stream stdout;
         private static int ScreenWidth;
         private static int ScreenHeight;
 
-        public static void Setup()
+        public static void Setup(IConsole console)
         {
+            Rendering.console = console;
             // Make Console fullscreen only on windows (*nix doesn't support that)
             switch(Environment.OSVersion.Platform)
             {
@@ -21,17 +25,39 @@ namespace DualityEngine.Graphics
                 case PlatformID.Win32S:
                 case PlatformID.Win32Windows:
                 case PlatformID.WinCE:
-                    Console.WindowWidth = Console.LargestWindowWidth;
-                    Console.WindowHeight = Console.LargestWindowHeight;
+                    Rendering.console.WindowWidth = Rendering.console.LargestWindowWidth;
+                    Rendering.console.WindowHeight = Rendering.console.LargestWindowHeight;
                     break;
                 default:
                     break;
             }
-            ScreenWidth = Console.WindowWidth;
-            ScreenHeight = Console.WindowHeight;
-            stdout = Console.OpenStandardOutput(ScreenWidth * ScreenHeight);
+            ScreenWidth = Rendering.console.WindowWidth;
+            ScreenHeight = Rendering.console.WindowHeight;
+            stdout = Rendering.console.OpenStandardOutput(ScreenWidth * ScreenHeight);
             VirtualScreen = new string[ScreenHeight];
-            Console.CursorVisible = false;
+            Rendering.console.CursorVisible = false;
+        }
+        public static void Setup()
+        {
+            console = new Implementations.Console();
+            // Make Console fullscreen only on windows (*nix doesn't support that)
+            switch (Environment.OSVersion.Platform)
+            {
+                case PlatformID.Win32NT:
+                case PlatformID.Win32S:
+                case PlatformID.Win32Windows:
+                case PlatformID.WinCE:
+                    console.WindowWidth = console.LargestWindowWidth;
+                    console.WindowHeight = console.LargestWindowHeight;
+                    break;
+                default:
+                    break;
+            }
+            ScreenWidth = console.WindowWidth;
+            ScreenHeight = console.WindowHeight;
+            stdout = console.OpenStandardOutput(ScreenWidth * ScreenHeight);
+            VirtualScreen = new string[ScreenHeight];
+            console.CursorVisible = false;
         }
 
         public static void Teardown()
@@ -68,7 +94,7 @@ namespace DualityEngine.Graphics
             {
                 case PlatformID.MacOSX:
                 case PlatformID.Unix:
-                    Console.Clear();
+                    console.Clear();
                     break;
             }
             string ScreenString = string.Join("\n", VirtualScreen);
