@@ -16,6 +16,7 @@ namespace DualityEngine.Interfaces
         int WindowHeight { get; set; }
         void Clear();
         Stream OpenStandardOutput();
+        Stream OpenStandardOutput(int bufferSize);
         ConsoleKeyInfo ReadKey();
         ConsoleKeyInfo ReadKey(bool intercept);
         void SetIn(TextReader newIn);
