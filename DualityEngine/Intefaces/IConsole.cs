@@ -9,6 +9,8 @@ namespace DualityEngine.Interfaces
     {
         bool CursorVisible { get; set; }
         bool KeyAvailable { get; }
+        int LargestWindowWidth { get; }
+        int LargestWindowHeight { get; }
         bool TreatControlCAsInput { get; set; }
         int WindowWidth { get; set; }
         int WindowHeight { get; set; }
