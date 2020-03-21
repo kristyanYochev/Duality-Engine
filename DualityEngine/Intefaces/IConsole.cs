@@ -8,7 +8,7 @@ namespace DualityEngine.Interfaces
     interface IConsole
     {
         bool CursorVisible { get; set; }
-        bool KeyAvailable { get; set; }
+        bool KeyAvailable { get; }
         bool TreatControlCAsInput { get; set; }
         int WindowWidth { get; set; }
         int WindowHeight { get; set; }
