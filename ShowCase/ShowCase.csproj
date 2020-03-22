@@ -15,8 +15,12 @@
     <None Update="Sprites\TestSprite.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Sprites\Dino.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Sprites\" />
+    <Folder Include="Scripts\" />
   </ItemGroup>
 </Project>
