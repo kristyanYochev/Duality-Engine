@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using DualityEngine.Exceptions;
 
 namespace DualityEngine.Graphics
 {
@@ -13,7 +14,11 @@ namespace DualityEngine.Graphics
         
         public char GetCharAt(int row, int column)
         {
-            return Content[row * Columns + column];
+            if (0 <= row && row < Rows && 0 <= column && column < Columns)
+            {
+                return Content[row * Columns + column];
+            }
+            throw new CoordinatesOutOfBoundsException();
         }
 
         public Sprite(string content, int row, int col)

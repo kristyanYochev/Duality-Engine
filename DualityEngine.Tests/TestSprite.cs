@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using NUnit.Framework;
 using DualityEngine.Graphics;
+using DualityEngine.Exceptions;
 
 namespace DualityEngineTests
 {
@@ -26,7 +27,7 @@ namespace DualityEngineTests
         [Test]
         public void TestInvalidGetCharAt()
         {
-            Assert.Throws<Exception>(()=>testSprite.GetCharAt(10, 10));
+            Assert.Throws<CoordinatesOutOfBoundsException>(()=>testSprite.GetCharAt(10, 10));
         }
     }
 }
