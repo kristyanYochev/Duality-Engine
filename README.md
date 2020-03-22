@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/kristyanYochev/Duality-Engine.svg?branch=master)](https://travis-ci.org/kristyanYochev/Duality-Engine)
-[![codecov](https://codecov.io/gh/tonerdo/coverlet/branch/master/graph/badge.svg)](https://codecov.io/gh/tonerdo/coverlet)
+[![codecov.io Code Coverage](https://img.shields.io/codecov/c/github/dwyl/hapi-auth-jwt2.svg?maxAge=2592000)](https://codecov.io/github/dwyl/hapi-auth-jwt2?branch=code-coverage)
 
 # Duality-Engine
 A C# ASCII game engine. Its architecture is based on the Unity engine (although much simplified version of it).
