@@ -63,6 +63,7 @@ namespace DualityEngine.Graphics
         public static void Teardown()
         {
             stdout.Close();
+            console.CursorVisible = true;
         }
 
         public static void RenderSprite(Sprite sprite, float x, float y) 
