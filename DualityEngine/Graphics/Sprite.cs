@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 using System.IO;
 using DualityEngine.Exceptions;
 
@@ -31,7 +32,14 @@ namespace DualityEngine.Graphics
 
         public static Sprite ParseSprite(string filePath)
         {
+                   
             string[] lines = File.ReadAllLines(filePath);
+            string longestLine = lines.OrderByDescending(line => line.Length).First();
+            for(uint i = 0; i < lines.Length; ++i)
+            {
+                string spaces = new String(' ', longestLine.Length - lines[i].Length);
+                lines[i] += spaces;
+            }
             return new Sprite(String.Join("", lines), lines.Length, lines[0].Length);
         }
     }
