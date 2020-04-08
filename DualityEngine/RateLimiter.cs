@@ -12,7 +12,7 @@ namespace DualityEngine
             LastCallMillis = CurrMillis;
         }
 
-        private static long CurrMillis
+        public static long CurrMillis
         {
             get
             {
