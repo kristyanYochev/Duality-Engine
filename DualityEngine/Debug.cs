@@ -16,26 +16,36 @@ namespace DualityEngine
         public static Debug Instance { get { return lazyInstance.Value; } }
 
         private readonly Queue<string> messages = new Queue<string>();
-        private StreamWriter logFile = null;
+        private StreamWriter logFileWriter = null;
+        private FileStream logFile = null;
+        private readonly Thread loggingThread = null;
+        private volatile bool logging = true;
 
         private Debug()
         {
-            Thread loggingThread = new Thread(new ThreadStart(ProcessQueue));
+            loggingThread = new Thread(new ThreadStart(ProcessQueue));
             loggingThread.IsBackground = true;
             loggingThread.Start();
+            
         }
 
         public void SetUp(string filePath)
         {
-            logFile = new StreamWriter(File.Open(filePath, FileMode.Create));
+            logFile = File.Open(filePath, FileMode.Create);
+            logFileWriter = new StreamWriter(logFile);
+        }
+
+        public void TearDown()
+        {
+            logging = false;
         }
 
         public void Log(object log)
         {
             double elapsedTime = (DateTime.Now - Process.GetCurrentProcess().StartTime).TotalSeconds;
-            string message = $"[{elapsedTime}] {log.ToString()}";
+            string message = $"[{elapsedTime}] {log}";
 
-            lock(messages)
+            lock (messages)
             {
                 messages.Enqueue(message);
             }
@@ -43,7 +53,7 @@ namespace DualityEngine
 
         private void ProcessQueue()
         {
-            while (true)
+            while (logging)
             {
                 Queue<string> messagesCopy;
                 lock (messages)
@@ -55,18 +65,22 @@ namespace DualityEngine
                 foreach (string message in messagesCopy)
                 {
                     WriteLog(message);
+                    System.Diagnostics.Debug.WriteLine("Logging line");
                 }
             }
+
+            logFileWriter.Flush();
+            logFile.Close();
         }
 
         private void WriteLog(string message)
         {
-            if (logFile == null)
+            if (logFileWriter == null)
             {
                 throw new LoggingNotSetUpException();
             }
 
-            logFile.WriteLine(message);
+            logFileWriter.WriteLine(message);
         }
     }
 }
