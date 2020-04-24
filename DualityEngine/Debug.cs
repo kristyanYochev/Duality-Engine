@@ -65,7 +65,6 @@ namespace DualityEngine
                 foreach (string message in messagesCopy)
                 {
                     WriteLog(message);
-                    System.Diagnostics.Debug.WriteLine("Logging line");
                 }
             }
 
