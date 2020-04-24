@@ -17,7 +17,10 @@ namespace ShowCase.Scripts
             initialPosition = gameObject.position;
         }
 
-        public override void Start() { }
+        public override void Start()
+        {
+            Debug.Instance.Log("Start of dino script");
+        }
 
         public override void Update()
         {
@@ -29,6 +32,7 @@ namespace ShowCase.Scripts
             if (Input.IsKeyPressed(ConsoleKey.D))
             {
                 gameObject.position.x += horizontalSpeed;
+                Debug.Instance.Log("Right key pressed");
             }
 
             if (Input.IsKeyPressed(ConsoleKey.Q))
