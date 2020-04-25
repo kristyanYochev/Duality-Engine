@@ -12,8 +12,9 @@ namespace ShowCase
     {
         static void Main(string[] args)
         {
-            DualityEngine.Debug.Instance.SetUp("/Users/kristyanyochev/Projects/DualityEngine/ShowCase/Logs.log");
+            DualityEngine.Debug.Instance.SetUp("Logs.log");
             Scene mainScene = new Scene();
+            mainScene.Overlay.AddElement("Jump count", new UILabel("Jumps: 0", new DualityEngine.Mathf.Vector2 {x = 0.1f, y = 0.1f}));
             //GameObject stick = new GameObject(new DualityEngine.Mathf.Vector2 { x = 0.5f, y = 0.5f }, mainScene);
             //stick.AddComponent(new AnimationController(stick, Animation.ParseAnimation("Sprites/Animes.json")));
             //mainScene.AddObject(stick);

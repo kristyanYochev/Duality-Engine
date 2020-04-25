@@ -6,6 +6,7 @@ namespace ShowCase.Scripts
 {
     public class DinoController : Component
     {
+        private int jumps = 0;
         private readonly float jumpForce = 0.08f;
         private readonly float horizontalSpeed = 0.05f;
         private readonly float gravity = 0.01f;
@@ -43,6 +44,8 @@ namespace ShowCase.Scripts
             if (Input.IsKeyPressed(ConsoleKey.Spacebar) && gameObject.position.y >= initialPosition.y)
             {
                 upVelocity = jumpForce;
+                jumps++;
+                gameObject.scene.Overlay.GetElement("Jump count").Content = $"Jumps: {jumps}";
             }
 
             gameObject.position.y -= upVelocity;
