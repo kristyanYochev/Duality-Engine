@@ -8,22 +8,22 @@ namespace DualityEngine.Graphics
     public class UILabel : UIElement
     {
         public string Content { get; set; }
-        public Vector2 Position { get; set; }
+        public Vector2Int Position { get; set; }
 
-        public UILabel(string content, Vector2 position)
+        public UILabel(string content, Vector2Int position)
         {
-            this.Content = content;
-            this.Position = position;
+            Content = content;
+            Position = position;
         }
 
-        public UILabel(Vector2 position) : this("", position)
+        public UILabel(Vector2Int position) : this("", position)
         {
         }
 
         public void Render()
         {
             Sprite sprite = new Sprite(Content, 1, Content.Length);
-            Rendering.RenderSprite(sprite, Position.x, Position.y);
+            Rendering.RenderSprite(sprite, Position);
         }
     }
 }

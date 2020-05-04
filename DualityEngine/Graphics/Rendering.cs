@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Text;
 using DualityEngine.Interfaces;
+using DualityEngine.Mathf;
 using DualityEngine.Implementations;
 
 namespace DualityEngine.Graphics
@@ -66,16 +67,13 @@ namespace DualityEngine.Graphics
             console.CursorVisible = true;
         }
 
-        public static void RenderSprite(Sprite sprite, float x, float y) 
+        public static void RenderSprite(Sprite sprite, Vector2Int position) 
         {
-            int posX = (int)Math.Round(x * ScreenWidth);
-            int posY = (int)Math.Round(y * ScreenHeight);
-            
             for(int row = 0; row < sprite.Rows; ++row)
             {
                 for(int column = 0; column < sprite.Columns; ++column)
                 {
-                    DrawCharAt(sprite.GetCharAt(row, column), posX + column, posY + row);
+                    DrawCharAt(sprite.GetCharAt(row, column), position.X + column, position.Y + row);
                 }
             }
             //Console.Out.Flush();
