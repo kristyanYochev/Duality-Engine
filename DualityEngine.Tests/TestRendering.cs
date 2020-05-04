@@ -31,7 +31,7 @@ namespace DualityEngineTests
             Rendering.Setup(mockConsole.Object);
             Sprite testSprite = new Sprite("*", 1, 1);
             Rendering.ClearScreen();
-            Rendering.RenderSprite(testSprite, 0, 0);
+            Rendering.RenderSprite(testSprite, new DualityEngine.Mathf.Vector2Int { X = 0, Y = 0 });
             Rendering.Flip();
             testStream.Flush();
             string renderOut;

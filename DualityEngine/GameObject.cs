@@ -7,10 +7,10 @@ namespace DualityEngine
     public class GameObject
     {
         private readonly List<Component> components;
-        public Vector2 position;
+        public Vector2Int position;
         public Scene scene;
 
-        public GameObject(Vector2 position, Scene scene)
+        public GameObject(Vector2Int position, Scene scene)
         {
             components = new List<Component>();
             this.position = position;

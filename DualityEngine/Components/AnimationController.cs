@@ -30,7 +30,7 @@ namespace DualityEngine.Components
                 LastCallMillis = RateLimiter.CurrMillis;
             }
 
-            Rendering.RenderSprite(animation.Sprites[currentFrame], gameObject.position.x, gameObject.position.y);
+            Rendering.RenderSprite(animation.Sprites[currentFrame], gameObject.position);
             
         }
     }
