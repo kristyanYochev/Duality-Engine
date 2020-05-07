@@ -1,9 +1,0 @@
-﻿{
-  "FrameRate": 60,
-  "FramePaths": [
-    "Sprites/TestAnimation/frame1.txt",
-    "Sprites/TestAnimation/frame2.txt",
-    "Sprites/TestAnimation/frame3.txt",
-    "Sprites/TestAnimation/frame4.txt"
-  ]
-}

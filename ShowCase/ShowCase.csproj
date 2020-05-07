@@ -9,14 +9,21 @@
     <ProjectReference Include="..\DualityEngine\DualityEngine.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Sprites\map.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <None Update="TestSprite.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Sprites\**">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Sprites\map.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
