@@ -6,6 +6,7 @@ using DualityEngine;
 using DualityEngine.Components;
 using DualityEngine.Graphics;
 using DualityEngine.Mathf;
+using ShowCase.Scripts;
 
 namespace ShowCase
 {
@@ -26,13 +27,16 @@ namespace ShowCase
                     switch (mapFile[line][symbol])
                     {
                         case '#':
-                            GameObject wall = new GameObject(new Vector2Int(symbol, line), scene);
+                            GameObject wall = new GameObject(new Vector2Int(symbol, line), scene, "Wall");
                             wall.AddComponent(new SpriteRenderer(wall, new Sprite("#", 1, 1)));
+                            wall.AddComponent(new BoxCollider(wall, new Vector2Int(0, 0), 1, 1, true));
                             scene.AddObject(wall);
                             break;
                         case '.':
-                            GameObject dot = new GameObject(new Vector2Int(symbol, line), scene);
+                            GameObject dot = new GameObject(new Vector2Int(symbol, line), scene, "Dot");
                             dot.AddComponent(new SpriteRenderer(dot, new Sprite(".", 1, 1)));
+                            dot.AddComponent(new BoxCollider(dot, new Vector2Int(0, 0), 1, 1, true));
+                            dot.AddComponent(new DotController(dot));
                             scene.AddObject(dot);
                             break;
                         default:
@@ -40,6 +44,13 @@ namespace ShowCase
                     }
                 }
             }
+
+            GameObject pacman = new GameObject(new Vector2Int(19, 14), scene, "Pacman");
+
+            pacman.AddComponent(new SpriteRenderer(pacman, new Sprite("0", 1, 1)));
+            pacman.AddComponent(new BoxCollider(pacman, new Vector2Int(0, 0), 1, 1, false));
+            pacman.AddComponent(new PacmanController(pacman));
+            scene.AddObject(pacman);
 
             scene.Run();
 

@@ -7,18 +7,23 @@ namespace DualityEngine
     public class Scene
     {
         public Overlay Overlay { get; private set; }
-        private readonly List<GameObject> gameObjects;
+        public List<GameObject> GameObjects { get; private set; }
         public bool running = false;
 
         public Scene()
         {
-            gameObjects = new List<GameObject>();
+            GameObjects = new List<GameObject>();
             Overlay = new Overlay();
         }
 
         public void AddObject(GameObject gameObject)
         {
-            gameObjects.Add(gameObject);
+            GameObjects.Add(gameObject);
+        }
+
+        public void RemoveObject(GameObject gameObject)
+        {
+            GameObjects.Remove(gameObject);
         }
 
         public void Run()
@@ -26,7 +31,7 @@ namespace DualityEngine
             running = true;
             Input.Setup();
             Rendering.Setup();
-            foreach(GameObject gameObject in gameObjects)
+            foreach(GameObject gameObject in GameObjects)
             {
                 gameObject.Start();
             }
@@ -34,10 +39,12 @@ namespace DualityEngine
             while (running)
             {
                 RateLimiter.LimitRate(60);
+                //Console.WriteLine("A frame");
                 Rendering.ClearScreen();
                 Input.CollectInput();
-                foreach (GameObject gameObject in gameObjects)
+                for (int i = 0; i < GameObjects.Count; i++)
                 {
+                    GameObject gameObject = GameObjects[i];
                     gameObject.Update();
                 }
                 Overlay.Render();

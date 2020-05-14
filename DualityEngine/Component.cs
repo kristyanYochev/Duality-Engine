@@ -12,5 +12,6 @@ namespace DualityEngine
 
         public abstract void Start();
         public abstract void Update();
+        public virtual void OnCollisionEnter(GameObject other) { }
     }
 }
