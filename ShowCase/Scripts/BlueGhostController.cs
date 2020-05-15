@@ -6,7 +6,7 @@ using DualityEngine.Mathf;
 
 namespace ShowCase.Scripts
 {
-    public class BasicGhostController : Component
+    class BlueGhostController : Component
     {
         readonly Vector2Int LEFT = new Vector2Int(-1, 0);
         readonly Vector2Int RIGHT = new Vector2Int(1, 0);
@@ -14,14 +14,42 @@ namespace ShowCase.Scripts
         readonly Vector2Int DOWN = new Vector2Int(0, 1);
 
         GameObject pacman;
+        GameObject blinky;
         int frameskip = 2; // skipping frames to reduce speed of ghost
         int currFrame = 0;
 
-        public BasicGhostController(GameObject gameObject, GameObject pacman) : base(gameObject)
+        public  BlueGhostController(GameObject gameObject, GameObject pacman, GameObject blinky) : base(gameObject)
         {
             this.pacman = pacman;
+            this.blinky = blinky;
         }
 
+        private Vector2Int determineTarget(PacmanController Pacman)
+        {
+            Vector2Int targetPacman = pacman.position;
+            Vector2Int targetlBlinky = blinky.position;
+            if (Pacman.direction == "Right")
+            {
+                targetPacman.X += 2;
+            }
+
+            else if (Pacman.direction == "Left")
+            {
+                targetPacman.X -= 2;
+            }
+
+            else if (Pacman.direction == "Down")
+            {
+                targetPacman.Y += 2;
+            }
+
+            else if (Pacman.direction == "Up")
+            {
+                targetPacman.Y -= 2;
+                targetPacman.X -= 2;
+            }
+            return new Vector2Int(targetPacman.X - targetlBlinky.X, targetPacman.Y - targetlBlinky.Y);
+        }
         public override void Start()
         { }
 
@@ -30,8 +58,7 @@ namespace ShowCase.Scripts
             currFrame++;
             currFrame = currFrame % frameskip;
             if (currFrame != 0) return;
-
-            Vector2Int target = pacman.position;
+            
 
             // TODO: Implement "No going back" policy
 
@@ -46,7 +73,7 @@ namespace ShowCase.Scripts
                 RIGHT + gameObject.position,
                 UP + gameObject.position,
                 DOWN + gameObject.position };
-            foreach(Vector2Int wallPosition in wallPositions)
+            foreach (Vector2Int wallPosition in wallPositions)
             {
                 pointsToCheck.Remove(wallPosition);
             }
@@ -54,6 +81,7 @@ namespace ShowCase.Scripts
             if (pointsToCheck.Count == 0) return;
 
             Vector2Int closestToTarget = new Vector2Int(0, 0);
+            Vector2Int target = determineTarget(pacman.GetComponent<PacmanController>().First());
             float closestDistance = float.MaxValue;
 
             for (int i = 0; i < pointsToCheck.Count; i++)
