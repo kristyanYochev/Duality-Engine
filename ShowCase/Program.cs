@@ -45,7 +45,7 @@ namespace ShowCase
                 }
             }
 
-            GameObject pacman = new GameObject(new Vector2Int(19, 13), scene, "Pacman");
+            GameObject pacman = new GameObject(new Vector2Int(18, 13), scene, "Pacman");
 
             pacman.AddComponent(new SpriteRenderer(pacman, new Sprite("0", 1, 1)));
             pacman.AddComponent(new BoxCollider(pacman, new Vector2Int(0, 0), 1, 1, false));

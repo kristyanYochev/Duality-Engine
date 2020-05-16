@@ -26,27 +26,27 @@ namespace ShowCase.Scripts
 
         private Vector2Int determineTarget(PacmanController Pacman)
         {
-            Vector2Int targetPacman = pacman.position;
+            Vector2Int targetPacman = new Vector2Int(0, 0);
             Vector2Int targetlBlinky = blinky.position;
             if (Pacman.direction == "Right")
             {
-                targetPacman.X += 2;
+                targetPacman.X = pacman.position.X + 2;
             }
 
             else if (Pacman.direction == "Left")
             {
-                targetPacman.X -= 2;
+                targetPacman.X = pacman.position.X - 2;
             }
 
             else if (Pacman.direction == "Down")
             {
-                targetPacman.Y += 2;
+                targetPacman.Y = pacman.position.Y + 2;
             }
 
             else if (Pacman.direction == "Up")
             {
-                targetPacman.Y -= 2;
-                targetPacman.X -= 2;
+                targetPacman.Y = pacman.position.Y - 2;
+                targetPacman.X = pacman.position.X - 2;
             }
             return new Vector2Int(targetPacman.X - targetlBlinky.X, targetPacman.Y - targetlBlinky.Y);
         }
