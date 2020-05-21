@@ -7,6 +7,7 @@ namespace ShowCase.Scripts
     {
         private int score = 0;
         private int maxScore;
+        private bool gameFinished = false;
 
         public GameManager(GameObject gameObject, int maxScore) : base(gameObject)
         {
@@ -19,11 +20,16 @@ namespace ShowCase.Scripts
 
         public override void Update()
         {
+            if (gameFinished)
+            {
+                gameObject.scene.running = false;
+            }
         }
 
         public void LoseGame()
         {
             gameObject.scene.Overlay.GetElement("Win/Lose Message").Content = "You Lose";
+            gameObject.scene.paused = true;
         }
 
         public void EatDot()
@@ -41,6 +47,7 @@ namespace ShowCase.Scripts
         private void WinGame()
         {
             gameObject.scene.Overlay.GetElement("Win/Lose Message").Content = "You Win!!!!";
+            gameObject.scene.paused = true;
         }
     }
 }
