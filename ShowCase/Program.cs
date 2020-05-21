@@ -17,8 +17,12 @@ namespace ShowCase
             DualityEngine.Debug.Instance.SetUp("Logs.log");
 
             Scene scene = new Scene();
+            scene.Overlay.AddElement("ScoreCounter", new UILabel("Score: 0", new Vector2Int(50, 0)));
+            scene.Overlay.AddElement("Win/Lose Message", new UILabel("", new Vector2Int(50, 10)));
 
             string[] mapFile = File.ReadAllLines("Sprites/map.txt");
+
+            int numberOfDots = 0;
 
             for (int line = 0; line < mapFile.Length; line++)
             {
@@ -38,6 +42,7 @@ namespace ShowCase
                             dot.AddComponent(new BoxCollider(dot, new Vector2Int(0, 0), 1, 1, true));
                             dot.AddComponent(new DotController(dot));
                             scene.AddObject(dot);
+                            numberOfDots++;
                             break;
                         default:
                             break;
@@ -45,20 +50,27 @@ namespace ShowCase
                 }
             }
 
+            GameObject managerObject = new GameObject(new Vector2Int(0, 0), scene, "");
+            GameManager manager = new GameManager(managerObject, numberOfDots);
+            managerObject.AddComponent(manager);
+            scene.AddObject(managerObject);
+
             GameObject pacman = new GameObject(new Vector2Int(18, 13), scene, "Pacman");
 
             pacman.AddComponent(new SpriteRenderer(pacman, new Sprite("0", 1, 1)));
             pacman.AddComponent(new BoxCollider(pacman, new Vector2Int(0, 0), 1, 1, false));
-            pacman.AddComponent(new PacmanController(pacman));
+            pacman.AddComponent(new PacmanController(pacman, manager));
             scene.AddObject(pacman);
 
             GameObject blinky = new GameObject(new Vector2Int(1, 1), scene, "Ghost");
             blinky.AddComponent(new SpriteRenderer(blinky, new Sprite("M", 1, 1)));
+            blinky.AddComponent(new BoxCollider(blinky, new Vector2Int(0, 0), 1, 1, false));
             blinky.AddComponent(new RedGhostController(blinky, pacman));
             scene.AddObject(blinky);
 
             GameObject inky = new GameObject(new Vector2Int(26, 1), scene, "Ghost");
             inky.AddComponent(new SpriteRenderer(inky, new Sprite("W", 1, 1)));
+            inky.AddComponent(new BoxCollider(inky, new Vector2Int(0, 0), 1, 1, false));
             inky.AddComponent(new BlueGhostController(inky, pacman, blinky));
             scene.AddObject(inky);
 

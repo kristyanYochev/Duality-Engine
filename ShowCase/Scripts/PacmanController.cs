@@ -10,12 +10,14 @@ namespace ShowCase.Scripts
         readonly Vector2Int RIGHT = new Vector2Int(1, 0);
         readonly Vector2Int UP = new Vector2Int(0, -1);
         readonly Vector2Int DOWN = new Vector2Int(0, 1);
+        GameManager manager;
         public string direction; 
 
         private Vector2Int velocity = new Vector2Int(0, 0);
 
-        public PacmanController(GameObject gameObject) : base(gameObject)
+        public PacmanController(GameObject gameObject, GameManager manager) : base(gameObject)
         {
+            this.manager = manager;
         }
 
         public override void Start()
@@ -57,6 +59,14 @@ namespace ShowCase.Scripts
             {
                 gameObject.position += velocity * -1;
                 velocity = new Vector2Int(0, 0);
+            }
+            else if (other.Tag == "Ghost")
+            {
+                manager.LoseGame();
+            }
+            else if (other.Tag == "Dot")
+            {
+                manager.EatDot();
             }
         }
     }
