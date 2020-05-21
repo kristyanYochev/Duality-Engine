@@ -10,6 +10,7 @@ namespace ShowCase.Scripts
         readonly Vector2Int RIGHT = new Vector2Int(1, 0);
         readonly Vector2Int UP = new Vector2Int(0, -1);
         readonly Vector2Int DOWN = new Vector2Int(0, 1);
+        public string direction; 
 
         private Vector2Int velocity = new Vector2Int(0, 0);
 
@@ -26,21 +27,25 @@ namespace ShowCase.Scripts
             if (Input.IsKeyPressed(ConsoleKey.W))
             {
                 velocity = UP;
+                direction = "Up";
             }
 
             if (Input.IsKeyPressed(ConsoleKey.A))
             {
                 velocity = LEFT;
+                direction = "Left";
             }
 
             if (Input.IsKeyPressed(ConsoleKey.S))
             {
                 velocity = DOWN;
+                direction = "Down";
             }
 
             if (Input.IsKeyPressed(ConsoleKey.D))
             {
                 velocity = RIGHT;
+                direction = "Right";
             }
 
             gameObject.position += velocity;

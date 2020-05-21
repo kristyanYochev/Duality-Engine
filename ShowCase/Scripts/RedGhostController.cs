@@ -6,7 +6,7 @@ using DualityEngine.Mathf;
 
 namespace ShowCase.Scripts
 {
-    public class BasicGhostController : Component
+    public class RedGhostController : Component
     {
         readonly Vector2Int LEFT = new Vector2Int(-1, 0);
         readonly Vector2Int RIGHT = new Vector2Int(1, 0);
@@ -17,7 +17,7 @@ namespace ShowCase.Scripts
         int frameskip = 2; // skipping frames to reduce speed of ghost
         int currFrame = 0;
 
-        public BasicGhostController(GameObject gameObject, GameObject pacman) : base(gameObject)
+        public RedGhostController(GameObject gameObject, GameObject pacman) : base(gameObject)
         {
             this.pacman = pacman;
         }

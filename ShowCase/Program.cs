@@ -45,17 +45,22 @@ namespace ShowCase
                 }
             }
 
-            GameObject pacman = new GameObject(new Vector2Int(19, 13), scene, "Pacman");
+            GameObject pacman = new GameObject(new Vector2Int(18, 13), scene, "Pacman");
 
             pacman.AddComponent(new SpriteRenderer(pacman, new Sprite("0", 1, 1)));
             pacman.AddComponent(new BoxCollider(pacman, new Vector2Int(0, 0), 1, 1, false));
             pacman.AddComponent(new PacmanController(pacman));
             scene.AddObject(pacman);
 
-            GameObject ghost = new GameObject(new Vector2Int(1, 1), scene, "Ghost");
-            ghost.AddComponent(new SpriteRenderer(ghost, new Sprite("M", 1, 1)));
-            ghost.AddComponent(new BasicGhostController(ghost, pacman));
-            scene.AddObject(ghost);
+            GameObject blinky = new GameObject(new Vector2Int(1, 1), scene, "Ghost");
+            blinky.AddComponent(new SpriteRenderer(blinky, new Sprite("M", 1, 1)));
+            blinky.AddComponent(new RedGhostController(blinky, pacman));
+            scene.AddObject(blinky);
+
+            GameObject inky = new GameObject(new Vector2Int(26, 1), scene, "Ghost");
+            inky.AddComponent(new SpriteRenderer(inky, new Sprite("W", 1, 1)));
+            inky.AddComponent(new BlueGhostController(inky, pacman, blinky));
+            scene.AddObject(inky);
 
             scene.Run();
 
