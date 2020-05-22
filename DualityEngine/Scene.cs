@@ -9,6 +9,7 @@ namespace DualityEngine
         public Overlay Overlay { get; private set; }
         public List<GameObject> GameObjects { get; private set; }
         public bool running = false;
+        public bool paused = false;
 
         public Scene()
         {
@@ -42,6 +43,14 @@ namespace DualityEngine
                 //Console.WriteLine("A frame");
                 Rendering.ClearScreen();
                 Input.CollectInput();
+                while (paused)
+                {
+                    if (Input.IsKeyPressed(ConsoleKey.Spacebar))
+                    {
+                        paused = false;
+                        break;
+                    }
+                }
                 for (int i = 0; i < GameObjects.Count; i++)
                 {
                     GameObject gameObject = GameObjects[i];
