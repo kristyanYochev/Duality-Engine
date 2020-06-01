@@ -15,7 +15,7 @@ namespace DualityEngine.Components
 
         public override void Update()
         {
-            Rendering.RenderSprite(sprite, gameObject.position);
+            gameObject.scene.Camera.RenderSprite(sprite, gameObject.position);
         }
     }
 }
