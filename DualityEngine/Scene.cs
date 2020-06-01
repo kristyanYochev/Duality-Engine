@@ -7,14 +7,19 @@ namespace DualityEngine
     public class Scene
     {
         public Overlay Overlay { get; private set; }
+        public Camera Camera { get; private set; }
         public List<GameObject> GameObjects { get; private set; }
         public bool running = false;
         public bool paused = false;
 
-        public Scene()
+        public Scene() : this(new Camera())
+        { }
+
+        public Scene(Camera camera)
         {
             GameObjects = new List<GameObject>();
             Overlay = new Overlay();
+            Camera = camera;
         }
 
         public void AddObject(GameObject gameObject)

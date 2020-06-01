@@ -16,7 +16,7 @@ namespace ShowCase
         {
             DualityEngine.Debug.Instance.SetUp("Logs.log");
 
-            Scene scene = new Scene();
+            Scene scene = new Scene(new Camera(new Vector2Int(-20, 0)));
             scene.Overlay.AddElement("ScoreCounter", new UILabel("Score: 0", new Vector2Int(50, 0)));
             scene.Overlay.AddElement("Win/Lose Message", new UILabel("", new Vector2Int(50, 10)));
 
